@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.formbold-main-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 100%;
+}
+
+.formbold-form-wrapper {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: 100%;
+  position: relative; /* Ensure the form wrapper is positioned */
+  z-index: 2; /* Ensure it appears above the background images */
+}
+
+.formbold-form-title {
+  margin-bottom: 30px;
+  color: #03a4ed;
+  font-weight: 600;
+  font-size: 36px; /* Adjust size as needed */
+  line-height: 40px; /* Adjust line-height as needed */
+  color: #1E90FF; /* Blue color */
+  text-align: center; /* Center the title */
+  position: relative; /* For positioning pseudo-elements */
+  overflow: hidden; /* To handle overflow */
+  margin-bottom: 20px; /* Space below the title */
+  text-transform: uppercase;
+}
+
+/* Animation for the title */
+.formbold-form-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 40px;;
+  width: 100%;
+  height: 4px;
+  background: #1E90FF; /* Blue color */
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  animation: underline 1s forwards;
+}
+
+.formbold-form-title {
+  animation: fadeIn 1s ease-out;
+  color: #1E90FF;
+}
+
+.formbold-form-title span{
+  color: #fe3f40;
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation for estimated price */
+.result {
+  display: none;
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 20px;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.result.show {
+  display: block;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.result.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.result p {
+  color:#0084c2;
+}
+
+.result p span {
+  color:#fe3f40;
+}
+
+.formbold-input-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.formbold-input-flex > div {
+  flex: 1;
+  min-width: calc(50% - 10px);
+}
+
+.formbold-form-input {
+  width: 100%;
+  padding: 13px 22px;
+  border-radius: 5px;
+  border: 1px solid #dde3ec;
+  background: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  color: #536387;
+  outline: none;
+  position: relative; /* Ensure it appears above the background images */
+  z-index: 3; /* Ensure it appears above the background images */
+}
+
+.formbold-form-input:focus {
+  border-color: #1E90FF;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.formbold-form-label {
+  color: #536387;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.formbold-checkbox-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.formbold-checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #536387;
+}
+
+.formbold-input-checkbox {
+  margin-right: 10px;
+}
+
+.formbold-btn {
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 14px 25px;
+  width: 100%;
+  border: none;
+  font-weight: 500;
+  background-color: #1E90FF;
+  color: white;
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+.formbold-btn:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.select-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.select-image {
+  width: 50px; /* Set a constant width for the images */
+  height: auto; /* Height can vary */
+  position: absolute;
+  right: 30px; /* Adjust this value based on the width of your image */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4; /* Ensure it appears below the input fields */
+}
+
+.main-banner {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 70px 0px 120px 0px;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-banner:after {
+  content: '';
+  background-image: url(./images/baner-dec-left.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 193px;
+  height: 467px;
+  z-index: 0; /* Ensure it appears below everything else */
+}
+
+.main-banner:before {
+  content: '';
+  background-image: url(./images/baner-dec-right.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  width: 98px;
+  height: 290px;
+  z-index: 0; /* Ensure it appears below everything else */
+}

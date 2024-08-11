@@ -1,0 +1,203 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Laptop Price Predictor</title>
+    <link rel="icon" type="image/png" href="../static/images/icon.png">
+</head>
+<body>
+    <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+        <div class="formbold-main-wrapper">
+            <div class="formbold-form-wrapper">
+                <h1 class="formbold-form-title">Laptop <span>Price Predictor</span></h1>
+                <form action="/predict" method="POST">
+                    <div class="formbold-input-flex">
+                        <div class="input-with-image">
+                            <label for="ram" class="formbold-form-label">RAM (GB)</label>
+                            <input type="number" id="ram" name="ram" class="formbold-form-input" value="{{ form_data['ram'] }}" required>
+                        </div>
+                        <div class="input-with-image">
+                            <label for="weight" class="formbold-form-label">Weight (Kg)</label>
+                            <input type="number" id="weight" name="weight" step="0.1" class="formbold-form-input" value="{{ form_data['weight'] }}" required>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-flex">
+                        <div class="input-with-image">
+                            <label for="company" class="formbold-form-label">Company</label>
+                            <div class="select-container">
+                                <img id="company-image" src="../static/images/{{ form_data['company'] }}.png" alt="Company Image" class="select-image">
+                                <select name="company" id="company" class="formbold-form-input">
+                                    <option value="" {% if not form_data['company'] %} selected {% endif %} hidden>Select</option>
+                                    <option value="acer" {% if form_data['company'] == 'acer' %} selected {% endif %}>Acer</option>
+                                    <option value="apple" {% if form_data['company'] == 'apple' %} selected {% endif %}>Apple</option>
+                                    <option value="asus" {% if form_data['company'] == 'asus' %} selected {% endif %}>Asus</option>
+                                    <option value="dell" {% if form_data['company'] == 'dell' %} selected {% endif %}>Dell</option>
+                                    <option value="hp" {% if form_data['company'] == 'hp' %} selected {% endif %}>HP</option>
+                                    <option value="lenovo" {% if form_data['company'] == 'lenovo' %} selected {% endif %}>Lenovo</option>
+                                    <option value="msi" {% if form_data['company'] == 'msi' %} selected {% endif %}>MSI</option>
+                                    <option value="toshiba" {% if form_data['company'] == 'toshiba' %} selected {% endif %}>Toshiba</option>
+                                    <option value="other" {% if form_data['company'] == 'other' %} selected {% endif %}>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-with-image">
+                            <label for="typename" class="formbold-form-label">Type Name</label>
+                            <div class="select-container">
+                                <img id="typename-image" src="../static/images/{{ form_data['typename'] }}.png" alt="Type Name Image" class="select-image">
+                                <select name="typename" id="typename" class="formbold-form-input">
+                                    <option value="" {% if not form_data['typename'] %} selected {% endif %} hidden>Select</option>
+                                    <option value="2in1convertible" {% if form_data['typename'] == '2in1convertible' %} selected {% endif %}>2 in 1 Convertible</option>
+                                    <option value="gaming" {% if form_data['typename'] == 'gaming' %} selected {% endif %}>Gaming</option>
+                                    <option value="netbook" {% if form_data['typename'] == 'netbook' %} selected {% endif %}>Net Book</option>
+                                    <option value="notebook" {% if form_data['typename'] == 'notebook' %} selected {% endif %}>Note Book</option>
+                                    <option value="ultrabook" {% if form_data['typename'] == 'ultrabook' %} selected {% endif %}>Ultra Book</option>
+                                    <option value="workstation" {% if form_data['typename'] == 'workstation' %} selected {% endif %}>Workstation</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-flex">
+                        <div class="input-with-image">
+                            <label for="opsys" class="formbold-form-label">Operating System</label>
+                            <div class="select-container">
+                                <img id="opsys-image" src="../static/images/{{ form_data['opsys'] }}.png" alt="Operating System Image" class="select-image">
+                                <select name="opsys" id="opsys" class="formbold-form-input">
+                                    <option value="" {% if not form_data['opsys'] %} selected {% endif %} hidden>Select</option>
+                                    <option value="windows" {% if form_data['opsys'] == 'windows' %} selected {% endif %}>Windows</option>
+                                    <option value="mac" {% if form_data['opsys'] == 'mac' %} selected {% endif %}>Mac</option>
+                                    <option value="linux" {% if form_data['opsys'] == 'linux' %} selected {% endif %}>Linux</option>
+                                    <option value="otheros" {% if form_data['opsys'] == 'otheros' %} selected {% endif %}>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-with-image">
+                            <label for="cpuname" class="formbold-form-label">CPU</label>
+                            <div class="select-container">
+                                <img id="cpuname-image" src="../static/images/{{ form_data['cpuname'] }}.png" alt="CPU Image" class="select-image">
+                                <select name="cpuname" id="cpuname" class="formbold-form-input">
+                                    <option value="" {% if not form_data['cpuname'] %} selected {% endif %} hidden>Select</option>
+                                    <option value="intelcorei3" {% if form_data['cpuname'] == 'intelcorei3' %} selected {% endif %}>Intel Core i3</option>
+                                    <option value="intelcorei5" {% if form_data['cpuname'] == 'intelcorei5' %} selected {% endif %}>Intel Core i5</option>
+                                    <option value="intelcorei7" {% if form_data['cpuname'] == 'intelcorei7' %} selected {% endif %}>Intel Core i7</option>
+                                    <option value="amd" {% if form_data['cpuname'] == 'amd' %} selected {% endif %}>AMD</option>
+                                    <option value="other" {% if form_data['cpuname'] == 'other' %} selected {% endif %}>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-flex">
+                        <div class="input-with-image">
+                            <label for="gpuname" class="formbold-form-label">GPU</label>
+                            <div class="select-container">
+                                <img id="gpuname-image" src="../static/images/{{ form_data['gpuname'] }}.png" alt="GPU Image" class="select-image">
+                                <select name="gpuname" id="gpuname" class="formbold-form-input">
+                                    <option value="" {% if not form_data['gpuname'] %} selected {% endif %} hidden>Select</option>
+                                    <option value="intel" {% if form_data['gpuname'] == 'intel' %} selected {% endif %}>Intel</option>
+                                    <option value="amd" {% if form_data['gpuname'] == 'amd' %} selected {% endif %}>AMD</option>
+                                    <option value="nvidia" {% if form_data['gpuname'] == 'nvidia' %} selected {% endif %}>Nvidia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formbold-checkbox-wrapper">
+                        <div>
+                            <label for="touchscreen" class="formbold-checkbox-label">
+                                <input type="checkbox" id="touchscreen" name="touchscreen" class="formbold-input-checkbox" >
+                                Touch Screen
+                            </label>
+                        </div>
+                        <div>
+                            <label for="ips" class="formbold-checkbox-label">
+                                <input type="checkbox" id="ips" name="ips" class="formbold-input-checkbox" >
+                                IPS
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-field">
+                        <input type="submit" class="formbold-btn" value="Predict Price">
+                    </div>
+                </form>
+
+                <div class="result {% if pred %}show{% else %}hidden{% endif %}">
+                    {% if pred %}
+                    <p><span>Estimated Price </span> = $ {{ pred }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imagePaths = {
+                'acer': '../static/images/acer.png',
+                'apple': '../static/images/apple.png',
+                'asus': '../static/images/asus.png',
+                'dell': '../static/images/dell.png',
+                'hp': '../static/images/hp.png',
+                'lenovo': '../static/images/lenovo.png',
+                'msi': '../static/images/msi.png',
+                'toshiba': '../static/images/toshiba.png',
+                '2in1convertible': '../static/images/2 in 1.png',
+                'gaming': '../static/images/gaming.png',
+                'netbook': '../static/images/netbook.png',
+                'notebook': '../static/images/notebook.png',
+                'ultrabook': '../static/images/ultrabook.png',
+                'workstation': '../static/images/workstation.png',
+                'windows': '../static/images/windows.png',
+                'mac': '../static/images/macos.png',
+                'linux': '../static/images/linux.png',
+                'intelcorei3': '../static/images/i3.png',
+                'intelcorei5': '../static/images/i5.png',
+                'intelcorei7': '../static/images/i7.png',
+                'amd': '../static/images/amd.png',
+                'intel': '../static/images/intel.png',
+                'nvidia': '../static/images/nvidia.png',
+                'otheros': '../static/images/otheros.png',
+                'other': '../static/images/otherC.png',
+            };
+
+            function updateImage(selectId, imageId) {
+                const selectElement = document.getElementById(selectId);
+                const imageElement = document.getElementById(imageId);
+
+                selectElement.addEventListener('change', () => {
+                    const selectedValue = selectElement.value;
+                    if (selectedValue) {
+                        imageElement.src = imagePaths[selectedValue] || '';
+                        imageElement.style.display = 'block';
+                    } else {
+                        imageElement.src = '';
+                        imageElement.style.display = 'none';
+                    }
+                });
+
+                // Initialize image state on page load
+                const initialValue = selectElement.value;
+                if (initialValue) {
+                    imageElement.src = imagePaths[initialValue] || '';
+                    imageElement.style.display = 'block';
+                } else {
+                    imageElement.src = '';
+                    imageElement.style.display = 'none';
+                }
+            }
+
+            updateImage('company', 'company-image');
+            updateImage('typename', 'typename-image');
+            updateImage('opsys', 'opsys-image');
+            updateImage('cpuname', 'cpuname-image');
+            updateImage('gpuname', 'gpuname-image');
+        });
+    </script>
+</body>
+</html>
